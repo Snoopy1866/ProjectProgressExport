@@ -253,18 +253,29 @@ namespace ProjectProgressExport
                 if (latestGithubVersion.CompareTo(localVersion) > 0)
                 {
                     txbUpdateInfo.Text = "有更新可用，版本号：" + latestGithubVersion.ToString();
+                    txbUpdateInfo.Foreground = Brushes.Red;
+
                     btnUpdate.Visibility = Visibility.Visible;
+                    btnRetry.Visibility = Visibility.Collapsed;
+                    
+                }
+                else
+                {
+                    txbUpdateInfo.Text = "已是最新版本。";
+                    txbUpdateInfo.Foreground = Brushes.Black;
+
+                    btnUpdate.Visibility = Visibility.Collapsed;
                     btnRetry.Visibility = Visibility.Collapsed;
                 }
             }
             catch (Exception)
             {
                 txbUpdateInfo.Text = "检查更新失败！";
+                txbUpdateInfo.Foreground = Brushes.Red;
+
                 btnUpdate.Visibility = Visibility.Collapsed;
                 btnRetry.Visibility = Visibility.Visible;
             }
-
-            txbUpdateInfo.Foreground = Brushes.Red;
             stpUpdatePanel.Visibility = Visibility.Visible;
         }
 
