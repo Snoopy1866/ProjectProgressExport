@@ -1,0 +1,186 @@
+﻿<Window x:Class="ProjectProgressExport.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjectProgressExport"
+        mc:Ignorable="d"
+        Title="医学中心项目进度自动导出-v0.1.0(beta)" Height="650" Width="1000">
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5*"></ColumnDefinition>
+            <ColumnDefinition Width="7*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition>
+            </RowDefinition>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Grid.Column="0" Margin="10">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Name="btnInputProgressTable" Content="导入医学中心进度工作簿" Margin="10" Click="BtnInputProgressTable_Click"></Button>
+                <Button Grid.Column="1" Name="btnRefresh" Content="刷新" Margin="2,10" Click="BtnRefresh_Click"
+                        ToolTip="如果你更改了下面的参数，可以点击我刷新右侧文本，而不必重新导入工作簿"></Button>
+            </Grid>
+            
+            <!--临床试验项目进度 GroupBox-->
+            <GroupBox Header="临床试验项目进度">
+                <StackPanel Margin="10">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="工作表名称：" Margin="2" FontWeight="Bold"></TextBlock>
+                        <TextBox Grid.Column="1" Name="tbxExcelClinicalSheetName" Text="进展项目-临床试验" Margin="2"></TextBox>
+                    </Grid>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="项目名称列名：" Margin="2" FontWeight="Bold"></TextBlock>
+                        <TextBox Grid.Column="1" Name="txtExcelClinicalProjectColumnName" Text="项目名称" Margin="2"></TextBox>
+                    </Grid>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="医学进度列名：" Margin="2" FontWeight="Bold"></TextBlock>
+                        <TextBox Grid.Column="1" Name="txtExcelClinicalMedicalColumnName" Text="医学支持内容/后续计划" Margin="2"></TextBox>
+                    </Grid>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="统计进度列名：" Margin="2" FontWeight="Bold"></TextBlock>
+                        <TextBox Grid.Column="1" Name="txtExcelClinicalStatisticsColumnName" Text="统计支持内容/后续计划" Margin="2"></TextBox>
+                    </Grid>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="数管进度列名：" Margin="2" FontWeight="Bold"></TextBlock>
+                        <TextBox Grid.Column="1" Name="txtExcelClinicalDataManageColumnName" Text="DM支持内容/后续计划" Margin="2"></TextBox>
+                    </Grid>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="输出标题：" Margin="2" FontWeight="Bold"></TextBlock>
+                        <TextBox Grid.Column="1" Name="txtExcelClinicalTitle" Text="一、临床试验-项目进度" Margin="2"></TextBox>
+                    </Grid>
+                </StackPanel>
+            </GroupBox>
+
+            <!--CER项目进度 GroupBox-->
+            <GroupBox Header="CER项目进度">
+                <StackPanel Margin="10">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="工作表名称：" Margin="2" FontWeight="Bold"></TextBlock>
+                        <TextBox Grid.Column="1" Name="tbxExcelCERSheetName" Text="进展项目-CER或其他" Margin="2"></TextBox>
+                    </Grid>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="项目名称列名：" Margin="2" FontWeight="Bold"></TextBlock>
+                        <TextBox Grid.Column="1" Name="txtExcelCERProjectColumnName" Text="项目名称" Margin="2"></TextBox>
+                    </Grid>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="医学进度列名：" Margin="2" FontWeight="Bold"></TextBlock>
+                        <TextBox Grid.Column="1" Name="txtExcelCERMedicalColumnName" Text="医学支持内容/后续计划" Margin="2"></TextBox>
+                    </Grid>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="统计进度列名：" Margin="2" FontWeight="Bold"></TextBlock>
+                        <TextBox Grid.Column="1" Name="txtExcelCERStatisticsColumnName" Text="统计支持内容/后续计划" Margin="2"></TextBox>
+                    </Grid>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="输出标题：" Margin="2" FontWeight="Bold"></TextBlock>
+                        <TextBox Grid.Column="1" Name="txtExcelCERTitle" Text="二、CER-项目进度" Margin="2"></TextBox>
+                    </Grid>
+                </StackPanel>
+            </GroupBox>
+
+            <StackPanel Name="stpUpdatePanel" Orientation="Horizontal" Margin="0,10" Visibility="Collapsed">
+                <TextBlock Name="txbUpdateInfo" Width="200"></TextBlock>
+                <Button Name="btnUpdate" Width="50" Margin="10,2"  Click="BtnUpdate_Click">更新</Button>
+                <Button Name="btnRetry" Width="50" Margin="10,2" Click="BtnRetry_Click">重试</Button>
+            </StackPanel>
+        </StackPanel>
+
+        
+        <TabControl Grid.Row="0" Grid.Column="1">
+            <TabItem Header="邮件内容">
+                <TextBox  Name="tbxProgressTextCopyToMail" TextWrapping="Wrap" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"></TextBox>
+            </TabItem>
+            <TabItem Header="周进展内容">
+                <StackPanel>
+                    <GroupBox Header="临床试验项目">
+                        <DataGrid Name="dgrClinicalProgress" Margin="2,10" AutoGenerateColumns="False" VerticalContentAlignment="Center" IsReadOnly="True">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="ID" Binding="{Binding ID}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="项目名称" Binding="{Binding ProjectName}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="项目进展" Binding="{Binding ProjectProgressText}"></DataGridTextColumn>
+                            </DataGrid.Columns>
+                            <DataGrid.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="复制" Command="{x:Static ApplicationCommands.Copy}"></MenuItem>
+                                </ContextMenu>
+                            </DataGrid.ContextMenu>
+                        </DataGrid>
+                    </GroupBox>
+                    <GroupBox Header="CER项目">
+                        <DataGrid Name="dgrCERProgress" Margin="2,10" AutoGenerateColumns="False" VerticalAlignment="Center" IsReadOnly="True">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="ID" Binding="{Binding ID}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="项目名称" Binding="{Binding ProjectName}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="项目进展" Binding="{Binding ProjectProgressText}"></DataGridTextColumn>
+                            </DataGrid.Columns>
+                            <DataGrid.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="复制" Command="{x:Static ApplicationCommands.Copy}"></MenuItem>
+                                </ContextMenu>
+                            </DataGrid.ContextMenu>
+                        </DataGrid>
+                    </GroupBox>
+                </StackPanel>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
