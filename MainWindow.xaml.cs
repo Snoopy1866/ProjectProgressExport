@@ -38,7 +38,7 @@ namespace ProjectProgressExport
         }
 
         private string path = ""; // 进度表文件路径
-        private readonly Version localVersion = new Version("0.1.0"); // 本地版本号
+        private readonly Version localVersion = new Version("0.1.1"); // 本地版本号
         private Version? latestGithubVersion = null; // Github 最新版本号
 
         /// <summary>
