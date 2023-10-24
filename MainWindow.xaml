@@ -179,6 +179,22 @@
                             </DataGrid.ContextMenu>
                         </DataGrid>
                     </GroupBox>
+                </Grid>
+            </TabItem>
+            <TabItem Header="关于">
+                <StackPanel Margin="10">
+                    <TextBlock Margin="5" Text="版本号：0.1.1"></TextBlock>
+                    <TextBlock Margin="5">
+                        Github仓库地址：
+                        <Hyperlink NavigateUri="https://github.com/Snoopy1866/ProjectProgressExport" Click="Hyperlink_Click">ProjectProgressExport</Hyperlink>
+                    </TextBlock>
+                    <TextBlock Margin="5">
+                        本项目基于以下开源第三方库：
+                    </TextBlock>
+                    <TextBlock Margin="20, 2">
+                        <Hyperlink NavigateUri="https://github.com/mini-software/MiniExcel/tree/master" Click="Hyperlink_Click">MiniExcel</Hyperlink>
+                        <Hyperlink NavigateUri="https://github.com/octokit/octokit.net" Click="Hyperlink_Click">Octokit</Hyperlink>
+                    </TextBlock>
                 </StackPanel>
             </TabItem>
         </TabControl>

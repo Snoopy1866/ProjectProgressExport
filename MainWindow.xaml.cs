@@ -267,6 +267,18 @@ namespace ProjectProgressExport
             txbUpdateInfo.Foreground = Brushes.Red;
             stpUpdatePanel.Visibility = Visibility.Visible;
         }
+
+
+        /// <summary>
+        /// 超链接文本 点击事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Hyperlink_Click(object sender, RoutedEventArgs e)
+        {
+            var hyperlink = (Hyperlink)sender;
+            System.Diagnostics.Process.Start("explorer.exe", hyperlink.NavigateUri.AbsoluteUri);
+        }
     }
 
 
