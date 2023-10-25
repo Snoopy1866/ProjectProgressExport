@@ -276,9 +276,9 @@ namespace ProjectProgressExport
                     btnRetry.Visibility = Visibility.Collapsed;
                 }
             }
-            catch (Exception)
+            catch (Exception err)
             {
-                txbUpdateInfo.Text = "检查更新失败！";
+                txbUpdateInfo.Text = "检查更新失败，错误原因：\n" + err.Message + " " + err.InnerException?.Message;
                 txbUpdateInfo.Foreground = Brushes.Red;
 
                 btnUpdate.Visibility = Visibility.Collapsed;

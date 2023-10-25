@@ -137,10 +137,10 @@
                 </StackPanel>
             </GroupBox>
 
-            <StackPanel Name="stpUpdatePanel" Orientation="Horizontal" Margin="0,10" Visibility="Collapsed">
-                <TextBlock Name="txbUpdateInfo" Width="200"></TextBlock>
-                <Button Name="btnUpdate" Width="50" Margin="10,2" Click="BtnUpdate_Click">更新</Button>
-                <Button Name="btnRetry" Width="50" Margin="10,2" Click="BtnRetry_Click">重试</Button>
+            <StackPanel Name="stpUpdatePanel" Margin="0,5" Visibility="Collapsed" HorizontalAlignment="Left">
+                <TextBlock Name="txbUpdateInfo" Width="350" TextWrapping="Wrap"></TextBlock>
+                <Button Name="btnUpdate" Width="50" Margin="0,2" HorizontalAlignment="Left" Click="BtnUpdate_Click">更新</Button>
+                <Button Name="btnRetry" Width="50" Margin="0,2" HorizontalAlignment="Left" Click="BtnRetry_Click">重试</Button>
             </StackPanel>
         </StackPanel>
 
