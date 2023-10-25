@@ -36,7 +36,16 @@ namespace ProjectProgressExport
 
             this.Title = title;
             this.txbLocalVersion.Text = "版本：" + localVersion?.ToString();
+        }
 
+
+        /// <summary>
+        /// 窗体 加载事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
             CheckUpdate();
         }
 
