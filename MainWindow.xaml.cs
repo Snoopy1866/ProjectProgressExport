@@ -35,8 +35,11 @@ namespace ProjectProgressExport
             InitializeComponent();
 
             CheckUpdate();
+
+            this.Title = title;
         }
 
+        private readonly string title = "医学中心项目进度自动导出";
         private string path = ""; // 进度表文件路径
         private readonly Version localVersion = new Version("0.1.1"); // 本地版本号
         private Version? latestGithubVersion = null; // Github 最新版本号
@@ -63,8 +66,8 @@ namespace ProjectProgressExport
                 return;
             }
 
+            this.Title = title + " - " + path;
             ReadProgress(path);
-
         }
 
 
