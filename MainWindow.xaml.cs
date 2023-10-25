@@ -34,10 +34,10 @@ namespace ProjectProgressExport
         {
             InitializeComponent();
 
-            CheckUpdate();
-
             this.Title = title;
             this.txbLocalVersion.Text = "版本：" + localVersion?.ToString();
+
+            CheckUpdate();
         }
 
         // 窗体标题
@@ -159,6 +159,10 @@ namespace ProjectProgressExport
             {
                 tbxProgressTextCopyToMail.Text = err.Message;
                 tbxProgressTextCopyToMail.Foreground = Brushes.Red;
+
+                tbiProgressTextCopyToMail.Focus();
+                dgrClinicalProgress.ItemsSource = null;
+                dgrCERProgress.ItemsSource = null;
             }
         }
 

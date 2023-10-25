@@ -146,7 +146,7 @@
 
         
         <TabControl Grid.Row="0" Grid.Column="1">
-            <TabItem Header="邮件内容">
+            <TabItem Header="邮件内容" Name="tbiProgressTextCopyToMail">
                 <TextBox  Name="tbxProgressTextCopyToMail" TextWrapping="NoWrap" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"></TextBox>
             </TabItem>
             <TabItem Header="周进展内容">
