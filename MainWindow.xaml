@@ -189,7 +189,7 @@
             </TabItem>
             <TabItem Header="关于">
                 <StackPanel Margin="10">
-                    <TextBlock Margin="5" Text="版本号：0.1.1"></TextBlock>
+                    <TextBlock Margin="5" Name="txbLocalVersion"></TextBlock>
                     <TextBlock Margin="5">
                         Github仓库地址：
                         <Hyperlink NavigateUri="https://github.com/Snoopy1866/ProjectProgressExport" Click="Hyperlink_Click">ProjectProgressExport</Hyperlink>

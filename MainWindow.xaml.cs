@@ -37,11 +37,16 @@ namespace ProjectProgressExport
             CheckUpdate();
 
             this.Title = title;
+            this.txbLocalVersion.Text = "版本：" + localVersion?.ToString();
         }
 
+        // 窗体标题
         private readonly string title = "医学中心项目进度自动导出";
-        private string path = ""; // 进度表文件路径
-        private readonly Version localVersion = new Version("0.1.1"); // 本地版本号
+        // 文件路径
+        private string path = "";
+        // 本地版本号
+        private readonly Version? localVersion = Assembly.GetExecutingAssembly().GetName().Version;
+        // Github 最新版本号
         private Version? latestGithubVersion = null; // Github 最新版本号
 
         /// <summary>
