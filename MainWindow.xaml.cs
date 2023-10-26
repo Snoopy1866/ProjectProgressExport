@@ -215,12 +215,13 @@ namespace ProjectProgressExport
                 // 检查是否有新进度
                 if (!string.IsNullOrEmpty(MCProgressExcelText) || !string.IsNullOrEmpty(STProgressExcelText) || !string.IsNullOrEmpty(DMProgressExcelText))
                 {
+                    projectHasNewProgressIndex++;
+
                     var projectName = itemArray[projectNameColumnIndex]?.ToString()?.Trim();
                     var projectProgressText = "";
                     progressTextCopyToMail = progressTextCopyToMail + projectHasNewProgressIndex + ". " + projectName + "\n";
 
-                    projectHasNewProgressIndex++;
-
+                    
                     var indentAsciiCode = 96;
                     // 检查医学进度
                     if (!string.IsNullOrEmpty(MCProgressExcelText))
