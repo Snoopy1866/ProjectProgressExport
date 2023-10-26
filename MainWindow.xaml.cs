@@ -273,12 +273,11 @@ namespace ProjectProgressExport
 
                 if (latestGithubVersion.CompareTo(localVersion) > 0)
                 {
-                    txbUpdateInfo.Text = "有更新可用，版本号：" + latestGithubVersion.ToString();
+                    txbUpdateInfo.Text = "有更新可用，版本号：" + latestGithubVersion.ToString() + "\n更新内容：\n" + release[0].Body;
                     txbUpdateInfo.Foreground = Brushes.Red;
 
                     btnUpdate.Visibility = Visibility.Visible;
                     btnRetry.Visibility = Visibility.Collapsed;
-                    
                 }
                 else
                 {

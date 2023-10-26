@@ -139,8 +139,8 @@
 
             <StackPanel Name="stpUpdatePanel" Margin="0,5" Visibility="Collapsed" HorizontalAlignment="Left">
                 <TextBlock Name="txbUpdateInfo" Width="350" TextWrapping="Wrap"></TextBlock>
-                <Button Name="btnUpdate" Width="50" Margin="0,2" HorizontalAlignment="Left" Click="BtnUpdate_Click">更新</Button>
-                <Button Name="btnRetry" Width="50" Margin="0,2" HorizontalAlignment="Left" Click="BtnRetry_Click">重试</Button>
+                <Button Name="btnUpdate" Width="50" Margin="0,5" HorizontalAlignment="Left" Click="BtnUpdate_Click">更新</Button>
+                <Button Name="btnRetry" Width="50" Margin="0,5" HorizontalAlignment="Left" Click="BtnRetry_Click">重试</Button>
             </StackPanel>
         </StackPanel>
 
