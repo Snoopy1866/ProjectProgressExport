@@ -22,10 +22,13 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="5*"></ColumnDefinition>
                     <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1.5*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="0" Name="btnInputProgressTable" Content="导入医学中心进度工作簿" Margin="10" Click="BtnInputProgressTable_Click"></Button>
-                <Button Grid.Column="1" Name="btnRefresh" Content="刷新" Margin="2,10" Click="BtnRefresh_Click"
+                <Button Grid.Column="0" Margin="5,10" Name="btnInputProgressTable" Content="导入医学中心进度工作簿" Click="BtnInputProgressTable_Click"></Button>
+                <Button Grid.Column="1" Margin="5,10" Name="btnRefresh" Content="刷新" Click="BtnRefresh_Click"
                         ToolTip="如果你更改了下面的参数，可以点击我刷新右侧文本，而不必重新导入工作簿"></Button>
+                <Button Grid.Column="2" Margin="5,10" Name="btnSaveConfig" Content="保存配置" Click="BtnSaveConfig_Click"
+                        ToolTip="" ToolTipService.ShowDuration="5000"></Button>
             </Grid>
             
             <!--临床试验项目进度 GroupBox-->
@@ -37,7 +40,7 @@
                             <ColumnDefinition></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <TextBlock Grid.Column="0" Text="工作表名称：" Margin="2" FontWeight="Bold"></TextBlock>
-                        <TextBox Grid.Column="1" Name="tbxExcelClinicalSheetName" Text="进展项目-临床试验" Margin="2"></TextBox>
+                        <TextBox Grid.Column="1" Name="txtExcelClinicalSheetName" Text="进展项目-临床试验" Margin="2"></TextBox>
                     </Grid>
 
                     <Grid>
@@ -96,7 +99,7 @@
                             <ColumnDefinition></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <TextBlock Grid.Column="0" Text="工作表名称：" Margin="2" FontWeight="Bold"></TextBlock>
-                        <TextBox Grid.Column="1" Name="tbxExcelCERSheetName" Text="进展项目-CER或其他" Margin="2"></TextBox>
+                        <TextBox Grid.Column="1" Name="txtExcelCERSheetName" Text="进展项目-CER或其他" Margin="2"></TextBox>
                     </Grid>
 
                     <Grid>

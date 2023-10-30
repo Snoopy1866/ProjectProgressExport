@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.IO;
 using System.Linq;
@@ -19,6 +20,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.VisualBasic;
 using Microsoft.Win32;
 using MiniExcelLibs;
 using Octokit;
@@ -46,6 +48,7 @@ namespace ProjectProgressExport
         /// <param name="e"></param>
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            LoadAppConfig();
             CheckUpdate();
         }
 
@@ -125,6 +128,100 @@ namespace ProjectProgressExport
             CheckUpdate();
         }
 
+
+        /// <summary>
+        /// 载入配置信息
+        /// </summary>
+        private void LoadAppConfig()
+        {
+            // 当前版本配置文件路径
+            var appConfigPath = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.PerUserRoamingAndLocal).FilePath;
+
+            // 当前版本配置文件不存在，需要重建配置文件
+            if (!File.Exists(appConfigPath))
+            {
+                // 当前版本配置文件目录
+                var appConfigDirPath = new DirectoryInfo(appConfigPath)?.Parent?.FullName;
+                if (appConfigDirPath != null)
+                {
+                    // 当前版本的配置文件不存在，但是当前版本号对应的文件夹存在，则直接删除文件夹，便于迁移配置文件
+                    if (Directory.Exists(appConfigDirPath))
+                    {
+                        Directory.Delete(appConfigDirPath, true);
+                    }
+
+                    // 当前用户配置文件目录（可能包含旧版本的配置文件）
+                    var appConfigMultiVersionDirPath = new DirectoryInfo(appConfigDirPath)?.Parent?.FullName;
+                    if (appConfigMultiVersionDirPath != null)
+                    {
+                        if (!Directory.Exists(appConfigMultiVersionDirPath))
+                        {
+                            Directory.CreateDirectory(appConfigMultiVersionDirPath);
+                        }
+
+                        var appConfigMultiVersionDirArray = new DirectoryInfo(appConfigMultiVersionDirPath).GetDirectories();
+
+                        // 旧版本配置文件存在，则将旧版本配置文件迁移到新版本，并删除旧版本配置文件
+                        if (appConfigMultiVersionDirArray?.Length > 0)
+                        {
+                            var appConfigLastVersionDirPath = appConfigMultiVersionDirArray[^1].FullName;
+                            Directory.Move(appConfigLastVersionDirPath, appConfigDirPath);
+
+                            // 重新载入配置信息
+                            LoadAppConfig();
+                            return;
+                        }
+                    }
+                }
+            }
+
+            txtExcelClinicalSheetName.Text = Properties.Settings.Default.txtExcelClinicalSheetName;
+            txtExcelClinicalProjectColumnName.Text = Properties.Settings.Default.txtExcelClinicalProjectColumnName;
+            txtExcelClinicalMedicalColumnName.Text = Properties.Settings.Default.txtExcelClinicalMedicalColumnName;
+            txtExcelClinicalStatisticsColumnName.Text = Properties.Settings.Default.txtExcelClinicalStatisticsColumnName;
+            txtExcelClinicalDataManageColumnName.Text = Properties.Settings.Default.txtExcelClinicalDataManageColumnName;
+            txtExcelClinicalTitle.Text = Properties.Settings.Default.txtExcelClinicalTitle;
+
+            txtExcelCERSheetName.Text = Properties.Settings.Default.txtExcelCERSheetName;
+            txtExcelCERProjectColumnName.Text = Properties.Settings.Default.txtExcelCERProjectColumnName;
+            txtExcelCERMedicalColumnName.Text = Properties.Settings.Default.txtExcelCERMedicalColumnName;
+            txtExcelCERStatisticsColumnName.Text = Properties.Settings.Default.txtExcelCERStatisticsColumnName;
+            txtExcelCERTitle.Text = Properties.Settings.Default.txtExcelCERTitle;
+        }
+
+        /// <summary>
+        /// 保存配置信息
+        /// </summary>
+        private void SaveAppConfig()
+        {
+            Properties.Settings.Default.txtExcelClinicalSheetName = txtExcelClinicalSheetName.Text;
+            Properties.Settings.Default.txtExcelClinicalProjectColumnName = txtExcelClinicalProjectColumnName.Text;
+            Properties.Settings.Default.txtExcelClinicalMedicalColumnName = txtExcelClinicalMedicalColumnName.Text;
+            Properties.Settings.Default.txtExcelClinicalStatisticsColumnName = txtExcelClinicalStatisticsColumnName.Text;
+            Properties.Settings.Default.txtExcelClinicalDataManageColumnName = txtExcelClinicalDataManageColumnName.Text;
+            Properties.Settings.Default.txtExcelClinicalTitle = txtExcelClinicalTitle.Text;
+
+            Properties.Settings.Default.txtExcelCERSheetName = txtExcelCERSheetName.Text;
+            Properties.Settings.Default.txtExcelCERProjectColumnName = txtExcelCERProjectColumnName.Text;
+            Properties.Settings.Default.txtExcelCERMedicalColumnName = txtExcelCERMedicalColumnName.Text;
+            Properties.Settings.Default.txtExcelCERStatisticsColumnName = txtExcelCERStatisticsColumnName.Text;
+            Properties.Settings.Default.txtExcelCERTitle = txtExcelCERTitle.Text;
+
+            Properties.Settings.Default.Save();
+
+            // 当前版本配置文件路径
+            var appConfigPath = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.PerUserRoamingAndLocal).FilePath;
+
+            var btnSaveConfigToolTip = new ToolTip
+            {
+                Content = "当前配置已保存至" + appConfigPath,
+                StaysOpen = false,
+                IsOpen = true,
+            };
+
+            btnSaveConfig.ToolTip = btnSaveConfigToolTip;
+        }
+
         /// <summary>
         /// 读取两个工作表的进度
         /// </summary>
@@ -134,7 +231,7 @@ namespace ProjectProgressExport
             try
             {
                 // 读取临床试验进度
-                var clinicalSheetName = tbxExcelClinicalSheetName.Text;
+                var clinicalSheetName = txtExcelClinicalSheetName.Text;
                 var clinicalDataTable = MiniExcel.QueryAsDataTable(path, useHeaderRow: true, sheetName: clinicalSheetName);
 
                 var clinicalProgressTitle = txtExcelClinicalTitle.Text;
@@ -146,7 +243,7 @@ namespace ProjectProgressExport
                 var clinicalProgressTextDictionary = ReadProgressOfSingleSheet(clinicalDataTable, clinicalProgressTitle, clinicalProjectColumnName, clinicalMedicalColumnName, clinicalStatisticsColumnName, clinicalDataManageColumnName);
 
                 // 读取CER进度
-                var cerSheetName = tbxExcelCERSheetName.Text;
+                var cerSheetName = txtExcelCERSheetName.Text;
                 var cerDataTable = MiniExcel.QueryAsDataTable(path, useHeaderRow: true, sheetName: cerSheetName);
 
                 var cerProgressTitle = txtExcelCERTitle.Text;
@@ -310,6 +407,17 @@ namespace ProjectProgressExport
         {
             var hyperlink = (Hyperlink)sender;
             System.Diagnostics.Process.Start("explorer.exe", hyperlink.NavigateUri.AbsoluteUri);
+        }
+
+
+        /// <summary>
+        /// 保存配置按钮 点击事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnSaveConfig_Click(object sender, RoutedEventArgs e)
+        {
+            SaveAppConfig();
         }
     }
 

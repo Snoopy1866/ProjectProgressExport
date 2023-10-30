@@ -1,0 +1,39 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="ProjectProgressExport.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="txtExcelClinicalSheetName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">进展项目-临床试验</Value>
+    </Setting>
+    <Setting Name="txtExcelClinicalProjectColumnName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">项目名称</Value>
+    </Setting>
+    <Setting Name="txtExcelClinicalMedicalColumnName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">医学支持内容/后续计划</Value>
+    </Setting>
+    <Setting Name="txtExcelClinicalStatisticsColumnName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">统计支持内容/后续计划</Value>
+    </Setting>
+    <Setting Name="txtExcelClinicalDataManageColumnName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">DM支持内容/后续计划</Value>
+    </Setting>
+    <Setting Name="txtExcelClinicalTitle" Type="System.String" Scope="User">
+      <Value Profile="(Default)">一、临床试验-项目进度</Value>
+    </Setting>
+    <Setting Name="txtExcelCERSheetName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">进展项目-CER或其他</Value>
+    </Setting>
+    <Setting Name="txtExcelCERProjectColumnName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">项目名称</Value>
+    </Setting>
+    <Setting Name="txtExcelCERMedicalColumnName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">医学支持内容/后续计划</Value>
+    </Setting>
+    <Setting Name="txtExcelCERStatisticsColumnName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">统计支持内容/后续计划</Value>
+    </Setting>
+    <Setting Name="txtExcelCERTitle" Type="System.String" Scope="User">
+      <Value Profile="(Default)">二、CER-项目进度</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
